@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SabeExtentions
+{
+    public static class Extentions
+    {
+        public static int WordCount(this string text)
+        {
+            return text.Split(' ').Count();
+        }
+
+        public static int NumberOfTheSameWords(this string str1, string str2)
+        {
+            //return false;
+            //2.number of similar words
+            var words1 = str1.Replace('.',' ').ToUpper().Split(' ').ToList();
+            var words2 = str2.ToUpper().Split(' ').ToList();
+
+            int howmany = 0;
+
+            foreach (var word in words1)
+            {
+                if (words2.Contains(word))
+                {
+                    howmany++;
+                }
+            }
+
+            return howmany;
+        }
+    }
+}

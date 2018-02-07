@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spiczrekasynk", "spiczrekasynk\spiczrekasynk.csproj", "{CFF92696-8E31-47A7-A9B3-1EC06F2F7108}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spiczrekasynkTests", "spiczrekasynkTests\spiczrekasynkTests.csproj", "{EBD0CD6C-9703-4C15-A01B-2CD15D97CC2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synchro", "Synchro\Synchro.csproj", "{71CC7EC3-5DBF-4D19-8AD1-98999291F850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabeEpubReader", "EpubReader\SabeEpubReader.csproj", "{C971A438-EC32-4175-AF2C-5279023BC7A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F08C7FEC-F9F3-478A-91E5-E030F7B5D291}"
+	ProjectSection(SolutionItems) = preProject
+		lib\eBdb.EpubReader.dll = lib\eBdb.EpubReader.dll
+		lib\Ionic.Zip.dll = lib\Ionic.Zip.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpubReaderTests", "EpubReaderTests\EpubReaderTests.csproj", "{062E0805-1386-4202-89F9-58A2BABC8A77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePubReader", "epubreader-19162\ePubReader\ePubReader.csproj", "{B5D1C9DA-D5F6-42CD-B639-E6796DD2BDBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFF92696-8E31-47A7-A9B3-1EC06F2F7108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF92696-8E31-47A7-A9B3-1EC06F2F7108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF92696-8E31-47A7-A9B3-1EC06F2F7108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF92696-8E31-47A7-A9B3-1EC06F2F7108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD0CD6C-9703-4C15-A01B-2CD15D97CC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD0CD6C-9703-4C15-A01B-2CD15D97CC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD0CD6C-9703-4C15-A01B-2CD15D97CC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD0CD6C-9703-4C15-A01B-2CD15D97CC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71CC7EC3-5DBF-4D19-8AD1-98999291F850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71CC7EC3-5DBF-4D19-8AD1-98999291F850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71CC7EC3-5DBF-4D19-8AD1-98999291F850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71CC7EC3-5DBF-4D19-8AD1-98999291F850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C971A438-EC32-4175-AF2C-5279023BC7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C971A438-EC32-4175-AF2C-5279023BC7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C971A438-EC32-4175-AF2C-5279023BC7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C971A438-EC32-4175-AF2C-5279023BC7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{062E0805-1386-4202-89F9-58A2BABC8A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062E0805-1386-4202-89F9-58A2BABC8A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062E0805-1386-4202-89F9-58A2BABC8A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062E0805-1386-4202-89F9-58A2BABC8A77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D1C9DA-D5F6-42CD-B639-E6796DD2BDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D1C9DA-D5F6-42CD-B639-E6796DD2BDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D1C9DA-D5F6-42CD-B639-E6796DD2BDBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D1C9DA-D5F6-42CD-B639-E6796DD2BDBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

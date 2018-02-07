@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace spiczrekasynk
+{
+    public static class MyExtensions
+    {
+        public static float WordCount(this string str)
+        {
+            return str.Split(new char[] { ' ', ',', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
+        public static string RemoveTime(this string speechlineWithTime)
+        {
+            return speechlineWithTime.Substring(12, speechlineWithTime.Length - 12);
+        }
+
+        public static string TakeTimeOnly(this string speechlineWithTime)
+        {
+            return speechlineWithTime.Substring(0, 12);
+        }
+
+        public static bool IsSimilarTo(this string str1, string str2)
+        {
+            //return false;
+            //2.number of similar words
+            var words1 = str1.Split(' ').ToList();
+            var words2 = str2.Split(' ').ToList();
+
+            int howmany = 0;
+
+            foreach (var word in words1)
+            {
+                if (words2.Contains(word))
+                {
+                    howmany++;
+                }
+            }
+
+            return howmany / (double)((words1.Count + words2.Count) / 2) > 0.3;
+        }
+    }
+}

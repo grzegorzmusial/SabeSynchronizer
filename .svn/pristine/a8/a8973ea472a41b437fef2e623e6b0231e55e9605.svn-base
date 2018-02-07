@@ -1,0 +1,124 @@
+﻿using System;
+using NUnit.Framework;
+using System.IO;
+using SabeMatcher;
+using System.Linq;
+
+namespace SabeTests
+{
+    [TestFixture]
+    public class MatcherTest
+    {
+        Matcher matcher;
+
+        [SetUp]
+        public void RunMatcher()
+        {
+            var originalBook = File.ReadAllLines(Helper.GetBinPath() + @"\" + "ch1bookOriginal.txt").Take(25).ToList();
+            var speech = File.ReadAllLines(Helper.GetBinPath() + @"\" + "ch1speechReconResultsNoTime.txt").ToList();
+            matcher = new Matcher(Helper.AddDotAtTheEndOfSentences(Helper.SplitSentences(originalBook)), speech);
+            matcher.Process();
+        }
+
+        [Test]
+        public void Line00() { Assert.AreEqual("Chapter One.", matcher.Results[0]); }
+        [Test]
+        public void Line01() { Assert.AreEqual("He has forgotten something, he knows that for sure when he wakes up.", matcher.Results[1]); }
+        [Test]
+        public void Line02() { Assert.AreEqual("Something he dreamed during the night.Something he ought to remember.", matcher.Results[2]); }
+        [Test]
+        public void Line03() { Assert.AreEqual("He tries to remember.", matcher.Results[3]); }
+        [Test]
+        public void Line04() { Assert.AreEqual("But sleep is like a black hole.A well that reveals nothing of its contents.", matcher.Results[4]); }
+        [Test]
+        public void Line05() { Assert.AreEqual("At least I didn't dream about the bulls, he thinks.", matcher.Results[5]); }
+        [Test]
+        public void Line06() { Assert.AreEqual("Then I would have been all sweaty, as if I had suffered through a fever during the night.", matcher.Results[6]); }
+        [Test]
+        public void Line07() { Assert.AreEqual("This time the bulls left me in peace.", matcher.Results[7]); }
+        [Test]
+        public void Line08() { Assert.AreEqual("He lies still in the darkness and listens.", matcher.Results[8]); }
+        [Test]
+        public void Line09() { Assert.AreEqual("His wife's breathing at his side is so faint that he can hardly hear it.", matcher.Results[9]); }
+        [Test]
+        public void Line10() { Assert.AreEqual("One of these mornings she'll be lying dead beside me and I won't even notice, he thinks.", matcher.Results[10]); }
+        [Test]
+        public void Line11() { Assert.AreEqual("Or maybe it'll be me.", matcher.Results[11]); }
+        [Test]
+        public void Line12() { Assert.AreEqual("Daybreak will reveal that one of us has been left all alone.", matcher.Results[12]); }
+        [Test]
+        public void Line13() { Assert.AreEqual("He looks at the clock on the table next to the bed.", matcher.Results[13]); }
+        [Test]
+        public void Line14() { Assert.AreEqual("The hands glow and point at quarter to five.", matcher.Results[14]); }
+        [Test]
+        public void Line15() { Assert.AreEqual("Why did I wake up? he thinks.", matcher.Results[15]); }
+        [Test]
+        public void Line16() { Assert.AreEqual("I usually sleep till five thirty.", matcher.Results[16]); }
+        [Test]
+        public void Line17() { Assert.AreEqual("I've done that for over forty years.", matcher.Results[17]); }
+        [Test]
+        public void Line18() { Assert.AreEqual("Why am I waking up now?.", matcher.Results[18]); }
+        [Test]
+        public void Line19() { Assert.AreEqual("He listens to the darkness and suddenly he is wide awake.", matcher.Results[19]); }
+        [Test]
+        public void Line20() { Assert.AreEqual("Something is different.", matcher.Results[20]); }
+        [Test]
+        public void Line21() { Assert.AreEqual("Carefully he gropes with one hand until he touches his wife's face.", matcher.Results[21]); }
+        [Test]
+        public void Line22() { Assert.AreEqual("With his fingertips he can feel that she's warm.", matcher.Results[22]); }
+        [Test]
+        public void Line23() { Assert.AreEqual("So she's not the one who died.", matcher.Results[23]); }
+        [Test]
+        public void Line24() { Assert.AreEqual("Neither of them has been left alone yet.", matcher.Results[24]); }
+        [Test]
+        public void Line25() { Assert.AreEqual("He listens to the darkness.", matcher.Results[25]); }
+        [Test]
+        public void Line26() { Assert.AreEqual("The horse, he thinks.", matcher.Results[26]); }
+        [Test]
+        public void Line27() { Assert.AreEqual("She's not neighing.That's why I woke up.", matcher.Results[27]); }
+        [Test]
+        public void Line28() { Assert.AreEqual("The mare usually whinnies at night.I hear it without waking up, and in my subconscious I know that I can keep on sleeping.", matcher.Results[28]); }
+        [Test]
+        public void Line29() { Assert.AreEqual("Carefully he gets out of the creaky bed.", matcher.Results[29]); }
+        [Test]
+        public void Line30() { Assert.AreEqual("For forty years they've owned it.It was the only piece of furniture they bought when they got married.", matcher.Results[30]); }
+        [Test]
+        public void Line31() { Assert.AreEqual("It's also the only bed they'll ever have in their lives.", matcher.Results[31]); }
+        [Test]
+        public void Line32() { Assert.AreEqual("He can feel his left knee aching as he walks across the wooden floor to the window.", matcher.Results[32]); }
+        [Test]
+        public void Line33() { Assert.AreEqual("I'm old, he thinks.Old and used up.", matcher.Results[33]); }
+        [Test]
+        public void Line34() { Assert.AreEqual("Every morning when I wake up I'm surprised all over again that I'm seventy years old.", matcher.Results[34]); }
+        [Test]
+        public void Line35() { Assert.AreEqual("He looks out into the winter night.", matcher.Results[35]); }
+        [Test]
+        public void Line36() { Assert.AreEqual("It's the eighth of January, 1990, and no snow has fallen in Skåne this winter.", matcher.Results[36]); }
+        [Test]
+        public void Line37() { Assert.AreEqual("The lamp outside the kitchen door casts its glow across the yard, the bare chestnut tree, and the fields beyond.", matcher.Results[37]); }
+        [Test]
+        public void Line38() { Assert.AreEqual("He squints his eyes toward the neighboring farm where the Lövgrens live.", matcher.Results[38]); }
+        [Test]
+        public void Line39() { Assert.AreEqual("The long, low white house is dark.The stable in the corner against the farmhouse has a pale yellow lamp above the black stable door.", matcher.Results[39]); }
+        [Test]
+        public void Line40() { Assert.AreEqual("That's where the mare stands in her stall, and that's where she suddenly whinnies uneasily at night.", matcher.Results[40]); }
+        [Test]
+        public void Line41() { Assert.AreEqual("He listens to the darkness.", matcher.Results[41]); }
+        [Test]
+        public void Line42() { Assert.AreEqual("The bed creaks behind him.", matcher.Results[42]); }
+        [Test]
+        public void Line43() { Assert.AreEqual(" What are you doing?  mutters his wife. Go back to sleep,  he replies.", matcher.Results[43]); }
+        [Test]
+        public void Line44() { Assert.AreEqual(" I'm just stretching my legs.", matcher.Results[44]); }
+        [Test]
+        public void Line45() { Assert.AreEqual(" . Is your knee hurting again? .", matcher.Results[45]); }
+        [Test]
+        public void Line46() { Assert.AreEqual(" No.", matcher.Results[46]); }
+        [Test]
+        public void Line47() { Assert.AreEqual(" . Then come back to bed.", matcher.Results[47]); }
+        [Test]
+        public void Line48() { Assert.AreEqual("Don't stand there freezing, you'll catch cold.", matcher.Results[48]); }
+        [Test]
+        public void Line49() { Assert.AreEqual(" .He hears her turn over onto her side.", matcher.Results[49]); }
+    }
+}

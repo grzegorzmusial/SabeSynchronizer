@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<smil version="3.0" xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops"><body><seq epub:textref="../Text/p001.xhtml" id="s000001"><par id="p000001"><text src="../Text/p001.xhtml#f001"/>
+<audio clipBegin="00:00:00.000" clipEnd="00:00:00.560" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000002"><text src="../Text/p001.xhtml#f002"/>
+<audio clipBegin="00:00:00.560" clipEnd="00:00:03.200" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000003"><text src="../Text/p001.xhtml#f003"/>
+<audio clipBegin="00:00:03.200" clipEnd="00:00:08.120" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000004"><text src="../Text/p001.xhtml#f004"/>
+<audio clipBegin="00:00:08.120" clipEnd="00:00:12.880" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000005"><text src="../Text/p001.xhtml#f005"/>
+<audio clipBegin="00:00:12.880" clipEnd="00:00:14.690" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000006"><text src="../Text/p001.xhtml#f006"/>
+<audio clipBegin="00:00:14.690" clipEnd="00:00:21.070" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000007"><text src="../Text/p001.xhtml#f007"/>
+<audio clipBegin="00:00:21.070" clipEnd="00:00:24.630" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000008"><text src="../Text/p001.xhtml#f008"/>
+<audio clipBegin="00:00:24.630" clipEnd="00:00:30.070" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000009"><text src="../Text/p001.xhtml#f009"/>
+<audio clipBegin="00:00:30.070" clipEnd="00:00:34.000" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000010"><text src="../Text/p001.xhtml#f010"/>
+<audio clipBegin="00:00:34.000" clipEnd="00:00:37.260" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000011"><text src="../Text/p001.xhtml#f011"/>
+<audio clipBegin="00:00:37.260" clipEnd="00:00:42.070" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000012"><text src="../Text/p001.xhtml#f012"/>
+<audio clipBegin="00:00:42.070" clipEnd="00:00:47.590" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000013"><text src="../Text/p001.xhtml#f013"/>
+<audio clipBegin="00:00:47.590" clipEnd="00:00:49.700" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000014"><text src="../Text/p001.xhtml#f014"/>
+<audio clipBegin="00:00:49.700" clipEnd="00:00:54.800" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000015"><text src="../Text/p001.xhtml#f015"/>
+<audio clipBegin="00:00:54.800" clipEnd="00:00:57.640" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000016"><text src="../Text/p001.xhtml#f016"/>
+<audio clipBegin="00:00:57.640" clipEnd="00:01:02.200" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000017"><text src="../Text/p001.xhtml#f017"/>
+<audio clipBegin="00:01:02.200" clipEnd="00:01:05.500" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000018"><text src="../Text/p001.xhtml#f018"/>
+<audio clipBegin="00:01:05.500" clipEnd="00:01:08.370" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000019"><text src="../Text/p001.xhtml#f019"/>
+<audio clipBegin="00:01:08.307" clipEnd="00:01:11.250" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000020"><text src="../Text/p001.xhtml#f020"/>
+<audio clipBegin="00:01:11.250" clipEnd="00:01:13.760" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000021"><text src="../Text/p001.xhtml#f021"/>
+<audio clipBegin="00:01:13.760" clipEnd="00:01:18.220" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000022"><text src="../Text/p001.xhtml#f022"/>
+<audio clipBegin="00:01:18.220" clipEnd="00:01:22.290" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000023"><text src="../Text/p001.xhtml#f023"/>
+<audio clipBegin="00:01:22.290" clipEnd="00:01:27.650" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000024"><text src="../Text/p001.xhtml#f024"/>
+<audio clipBegin="00:01:27.650" clipEnd="00:01:30.970" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000025"><text src="../Text/p001.xhtml#f025"/>
+<audio clipBegin="00:01:30.970" clipEnd="00:01:32.990" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000026"><text src="../Text/p001.xhtml#f026"/>
+<audio clipBegin="00:01:32.990" clipEnd="00:01:36.350" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000027"><text src="../Text/p001.xhtml#f027"/>
+<audio clipBegin="00:01:36.350" clipEnd="00:01:40.320" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000028"><text src="../Text/p001.xhtml#f028"/>
+<audio clipBegin="00:01:40.320" clipEnd="00:01:43.110" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000029"><text src="../Text/p001.xhtml#f029"/>
+<audio clipBegin="00:01:43.110" clipEnd="00:01:47.130" src="../Audio/p001.mp3"/>
+</par>
+<par id="p000030"><text src="../Text/p001.xhtml#f030"/>
+<audio clipBegin="00:01:47.130" clipEnd="00:01:57.130" src="../Audio/p001.mp3"/>
+</par>
+</seq>
+</body>
+</smil>

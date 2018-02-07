@@ -1,0 +1,238 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace Greg.Matcher
+{
+    public class Matcher
+    {
+        public List<string> Results { get; set; }
+        private List<string> speech;
+        private List<string> book;
+        const int LINES = 264;
+        public Matcher(string speechFile, string bookFile)
+        {
+            speech = GetSpeechResult(speechFile, LINES);
+            book = GetBook(bookFile, LINES);
+            Results = new List<string>();
+        }
+
+        public void Match()
+        {
+            while (speech.Count > 0 && book.Count > 0)
+            {
+                if (book[0].Length < 3)//and contains ",. or other;use RexEx
+                {
+                    book.RemoveAt(0);
+                }
+                Compare();
+                speech.RemoveAt(0);
+            }
+        }
+
+        private void Compare()
+        {
+            var compare0 = CompareLines(0);
+            CompareLine12();
+            var compare1 = CompareLines(1);
+            var compare2 = CompareLines(2);
+
+            if (compare2 == false)
+            {
+                CompareAndFix(2);
+            }
+
+            if (compare0 || compare1)
+            {
+                Results.Add(speech[0].TakeTimeOnly() + book[0]);
+                Console.WriteLine(speech[0].TakeTimeOnly() + book[0] + " " + Results.Count);
+                book.RemoveAt(0);
+                return;
+            }
+        }
+
+        private void CompareLine12()
+        {
+            if (speech.Count < 2 || book.Count < 3)
+            {
+                return;
+            }
+            var wordcompare12 = CompareWordCount(speech[1].RemoveTime(), book[2]);
+            var similarity = CompareStrings(speech[1].RemoveTime(), book[2]);
+
+            if (wordcompare12 && similarity > 0.5)
+            {
+                book[0] = book[0] + book[1];
+                book.RemoveAt(1);
+            }
+
+            if (book[2].WordCount() == 1)
+            {
+                book[1] = book[1] + book[2];
+                book.RemoveAt(2);
+            }
+        }
+
+        private bool CompareLines(int i)
+        {
+            if (speech.Count <= i || book.Count <= i)
+                return false;
+
+            var result = CompareWordCount(speech[i].RemoveTime(), book[i]);
+            return result;
+        }
+
+        private void CompareAndFix(int i)
+        {
+            if (speech.Count < 3 || book.Count <= i)
+            {
+                return;
+            }
+
+            string speechline = speech[i].RemoveTime();
+            string mergedbookline = book[i] + book[i + 1];
+
+            var result = CompareWordCount(speechline, mergedbookline);
+
+            if (result)
+            {
+                book[i] = book[i] + book[i + 1];
+                book.RemoveAt(i + 1);
+            }
+        }
+
+        private bool CompareWordCount(string speechline1, string bookline1)
+        {
+            var speechwc = speechline1.WordCount();
+            var booklinewc = bookline1.WordCount();
+
+            if (Math.Max(speechwc, booklinewc) < 6)
+            {
+                return true;
+            }
+            return Math.Abs(speechwc - booklinewc) < 0.4 * speechwc;
+        }
+
+        public List<string> GetBook(string filename, int howmany)
+        {
+            var originalBook = File.ReadAllLines(filename).Take(howmany).ToList();
+
+            List<string> lines = new List<string>();
+            originalBook.ForEach
+                  (
+                      (line) => lines.AddRange
+                          (
+                              line.Split('.').ToList()
+                          )
+                  );
+            book = new List<string>();
+            lines.ForEach
+                (
+                    (line) => AddDot(line, book)
+                );
+
+            return book;
+        }
+
+        private static void AddDot(string line, List<string> newlines)
+        {
+            if (line.Length < 3)
+            {
+                return;
+            }
+
+            newlines.Add(line + '.');
+        }
+
+        public List<string> GetSpeechResult(string filename, int howmany)
+        {
+            return File.ReadAllLines(filename).Take(howmany).ToList();
+        }
+
+        /// <summary>
+        /// Compares the two strings based on letter pair matches
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <returns>The percentage match from 0.0 to 1.0 where 1.0 is 100%</returns>
+        public double CompareStrings(string str1, string str2)
+        {
+            List<string> pairs1 = WordLetterPairs(str1.ToUpper());
+            List<string> pairs2 = WordLetterPairs(str2.ToUpper());
+
+            int intersection = 0;
+            int union = pairs1.Count + pairs2.Count;
+
+            for (int i = 0; i < pairs1.Count; i++)
+            {
+                for (int j = 0; j < pairs2.Count; j++)
+                {
+                    if (pairs1[i] == pairs2[j])
+                    {
+                        intersection++;
+                        pairs2.RemoveAt(j);//Must remove the match to prevent "GGGG" from appearing to match "GG" with 100% success
+
+                        break;
+                    }
+                }
+            }
+
+            return (2.0 * intersection) / union;
+        }
+
+        /// <summary>
+        /// Gets all letter pairs for each
+        /// individual word in the string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private List<string> WordLetterPairs(string str)
+        {
+            List<string> AllPairs = new List<string>();
+
+            // Tokenize the string and put the tokens/words into an array
+            string[] Words = Regex.Split(str, @"\s");
+
+            // For each word
+            for (int w = 0; w < Words.Length; w++)
+            {
+                if (!string.IsNullOrEmpty(Words[w]))
+                {
+                    // Find the pairs of characters
+                    String[] PairsInWord = LetterPairs(Words[w]);
+
+                    for (int p = 0; p < PairsInWord.Length; p++)
+                    {
+                        AllPairs.Add(PairsInWord[p]);
+                    }
+                }
+            }
+
+            return AllPairs;
+        }
+
+        /// <summary>
+        /// Generates an array containing every
+        /// two consecutive letters in the input string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private string[] LetterPairs(string str)
+        {
+            int numPairs = str.Length - 1;
+
+            string[] pairs = new string[numPairs];
+
+            for (int i = 0; i < numPairs; i++)
+            {
+                pairs[i] = str.Substring(i, 2);
+            }
+
+            return pairs;
+        }
+    }
+}

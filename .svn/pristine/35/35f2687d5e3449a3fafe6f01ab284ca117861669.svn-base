@@ -1,0 +1,36 @@
+﻿using SabeMatcher;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace SabeSeptember
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                var originalBook = File.ReadAllLines("ch1bookOriginal.txt").Take(25).ToList();
+                var speech = File.ReadAllLines("ch1speechReconResultsNoTime.txt").ToList();
+
+                new Matcher(Helper.AddDotAtTheEndOfSentences(Helper.SplitSentences(originalBook)), speech).Process(
+                    //"test"
+                    );
+            }
+            catch (FileNotFoundException fileNotFoundException)
+            {
+                Console.WriteLine("set copy to file " + fileNotFoundException.FileName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine("Success.PRESS any key");
+            Console.ReadKey();
+        }
+
+    
+    }
+}

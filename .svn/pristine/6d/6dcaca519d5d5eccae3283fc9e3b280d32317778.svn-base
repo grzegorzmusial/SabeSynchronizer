@@ -1,0 +1,18 @@
+﻿namespace SabeMatcher
+{
+    internal class CompareResult
+    {
+        public int WCresult { get; internal set; }
+        public int NumberOfTheSameWords { get; internal set; }
+        public double Similarity { get; internal set; }
+
+        public static bool operator >(CompareResult c1, CompareResult c2)
+        {
+            return c1.WCresult < c2.WCresult && c1.Similarity > c2.Similarity;// && c1.NumberOfTheSameWords > c2.NumberOfTheSameWords;
+        }
+        public static bool operator <(CompareResult c1, CompareResult c2)
+        {
+            return c1.WCresult > c2.WCresult && c1.Similarity < c2.Similarity;// && c1.NumberOfTheSameWords < c2.NumberOfTheSameWords;
+        }
+    }
+}

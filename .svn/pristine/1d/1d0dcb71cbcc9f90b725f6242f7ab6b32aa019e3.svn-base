@@ -1,0 +1,22 @@
+﻿using System;
+using System.IO;
+
+namespace AsynchronousRecognition
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var srt = new SpeechService().WavToSrt();
+            //Console.WriteLine("\n" + srt);
+            File.WriteAllText("ch1And2.txt" ,srt);
+#if DEBUG
+            Console.WriteLine("debug Press any key to exit...");
+            Console.ReadKey();
+#else
+            Console.WriteLine("relise release");
+#endif
+
+        }
+    }
+}

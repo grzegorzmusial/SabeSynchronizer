@@ -1,0 +1,20 @@
+﻿using eBdb.EpubReader;
+using System.Collections.Generic;
+namespace SabeSynchronizer
+{
+    public class Reader
+    {
+        public List<string> ReadEpub(string path)
+        {
+            //Init epub object.
+            Epub epub = new Epub(path);
+            List<NavPoint> navPoints = epub.TOC;
+            foreach (var item in epub.TOC)
+            {
+                
+            }
+
+            return new List<string> { "asdf" };
+        }
+    }
+}

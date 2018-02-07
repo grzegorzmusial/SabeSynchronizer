@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SabeMatcher
+{
+    public class Helper
+    {
+        public static List<string> AddDotAtTheEndOfSentences(List<string> splittedBook)
+        {
+            List<string> book = new List<string>();
+            splittedBook.ForEach((line) => AddDot(line, book));
+            return book;
+        }
+
+        public static List<string> SplitSentences(List<string> originalBook)
+        {
+            List<string> splittedBook = new List<string>();
+            originalBook.ForEach((line) => splittedBook.AddRange(line.Split('.').ToList()));
+            return splittedBook;
+        }
+
+        public static void AddDot(string line, List<string> newlines)
+        {
+            if (line == string.Empty)
+            {
+                return;
+            }
+
+            newlines.Add(line.TrimStart() + '.');
+        }
+
+        public static string GetBinPath()
+        {
+            return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        }
+
+        public static string GetProjectPath()
+        {
+            string appRoot = GetBinPath();
+            var dir = new DirectoryInfo(appRoot).Parent.Parent.Parent;
+            var name = dir.Name;
+            return dir.FullName + @"\" + name + @"\";
+        }
+
+        public static string GetTestProjectPath()
+        {
+            string appRoot = GetBinPath();
+            var dir = new DirectoryInfo(appRoot).Parent.Parent;
+            return dir.FullName + @"\";
+        }
+
+        public static string GetMainProjectPath()
+        {
+            string testProjectPath = GetTestProjectPath();
+            // Just hope it ends in the standard .Tests, lop it off, done.
+            string path = testProjectPath.Substring(0, testProjectPath.Length - 7) + @"\";
+            return path;
+        }
+    }
+}

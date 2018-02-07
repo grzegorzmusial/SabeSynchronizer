@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Greg.Matcher
+{
+    public static class Extentions
+    {
+        public static float WordCount(this string str)
+        {
+            return str.Split(new char[] { ' ', ',', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
+        public static string RemoveTime(this string speechlineWithTime)
+        {
+            return speechlineWithTime.Substring(12, speechlineWithTime.Length - 12);
+        }
+
+        public static string TakeTimeOnly(this string speechlineWithTime)
+        {
+            return speechlineWithTime.Substring(0, 12);
+        }
+
+    }
+}

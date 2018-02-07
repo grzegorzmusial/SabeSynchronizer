@@ -1,0 +1,12 @@
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\SabeSynchronizer.exe.config
+C:\prj\SabeSynchronizer\SabeSynchronizer\obj\Debug\SabeSynchronizer.csprojResolveAssemblyReference.cache
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\SabeSynchronizer.exe
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\SabeSynchronizer.pdb
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\eBdb.EpubReader.dll
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\HtmlAgilityPack.dll
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\Ionic.Zip.dll
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\eBdb.EpubReader.pdb
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\HtmlAgilityPack.pdb
+C:\prj\SabeSynchronizer\SabeSynchronizer\bin\Debug\HtmlAgilityPack.xml
+C:\prj\SabeSynchronizer\SabeSynchronizer\obj\Debug\SabeSynchronizer.exe
+C:\prj\SabeSynchronizer\SabeSynchronizer\obj\Debug\SabeSynchronizer.pdb

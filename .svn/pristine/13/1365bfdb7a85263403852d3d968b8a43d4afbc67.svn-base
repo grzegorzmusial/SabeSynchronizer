@@ -1,0 +1,203 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+using Synchro;
+using System.IO;
+using System;
+
+namespace AsynchronousRecognition.Tests
+{
+    [TestClass()]
+    public class SynchroTests
+    {
+        private TextSynchronizer textSynchronizer;
+        SimilarityTool similarityTool;
+
+        [TestMethod()]
+        public void SimilarityTest()
+        {
+            CreateSimilarityTool(12);
+            var result = similarityTool.Process();
+            Assert.AreEqual("00:00:00.56 Chapter One.", result[0]);
+            Assert.AreEqual("00:00:03.20 He has forgotten something, he knows that for sure when he wakes up.", result[1]);
+            //Assert.AreEqual("00:00:08.12  Something he dreamed during the night. Something he ought to remember.", result[2]);
+            //Assert.AreEqual("00:00:12.88 He tries to remember.", result[3]);
+            //Assert.AreEqual("00:00:14.69  But sleep is like a black hole. A well that reveals nothing of its contents.", result[4]);
+            //Assert.AreEqual("00:00:21.07 At least I didn’t dream about the bulls, he thinks.", result[5]);
+            //Assert.AreEqual("00:00:24.63  Then I would have been all sweaty, as if I had suffered through a fever during the night.", result[6]);
+            //Assert.AreEqual("00:00:30.07  This time the bulls left me in peace.", result[7]);
+            //Assert.AreEqual("00:00:34.00 He lies still in the darkness and listens.", result[8]);
+            //Assert.AreEqual("00:00:37.26  His wife’s breathing at his side is so faint that he can hardly hear it.", result[9]);
+            //Assert.AreEqual("00:00:42.07 One of these mornings she’ll be lying dead beside me and I won’t even notice, he thinks.", result[10]);
+            //Assert.AreEqual("00:00:47.59  Or maybe it’ll be me. One of us will die before the other. ", result[11]);
+            //    Assert.AreEqual("00:00:49.70  Daybreak will reveal that one of us has been left all alone.", result[12]);
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Console.WriteLine
+            //        (
+            //            "{0} | {1} | {2:N} | {3} | {4:N} | {5} | {6:N}",
+            //            TextSynchronizer.SeparateTime(speech[i], out time),
+            //            newlines[i],
+            //            st.CompareStrings(TextSynchronizer.SeparateTime(speech[i], out time), newlines[i]),
+            //            newlines[i + 1],
+            //            st.CompareStrings(TextSynchronizer.SeparateTime(speech[i], out time), newlines[i + 1]),
+            //            newlines[i + 2],
+            //            st.CompareStrings(TextSynchronizer.SeparateTime(speech[i], out time), newlines[i + 2])
+            //                                )
+            //        ;
+            //}
+        }
+
+        private static void AddDot(string line, List<string> newlines)
+        {
+            if (line == string.Empty)
+            {
+                return;
+            }
+
+            newlines.Add(line + '.');
+        }
+
+        //[TestMethod()]
+        //public void TextSynchronized01()
+        //{
+        //    CreateTextSynchronizer(1);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:00.56 Chapter One.", result[0]);
+        //}
+
+        ////[TestMethod()]
+        //public void TextSynchronized02()
+        //{
+        //    CreateTextSynchronizer(2);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:03.20 He has forgotten something, he knows that for sure when he wakes up.", result[1]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized03()
+        //{
+        //    CreateTextSynchronizer(3);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:08.12  Something he dreamed during the night. Something he ought to remember.", result[2]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized04()
+        //{
+        //    CreateTextSynchronizer(4);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:12.88 He tries to remember.", result[3]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized05()
+        //{
+        //    CreateTextSynchronizer(5);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:14.69  But sleep is like a black hole. A well that reveals nothing of its contents.", result[4]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized06()
+        //{
+        //    CreateTextSynchronizer(6);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:21.07 At least I didn’t dream about the bulls, he thinks.", result[5]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized07()
+        //{
+        //    CreateTextSynchronizer(7);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:24.63  Then I would have been all sweaty, as if I had suffered through a fever during the night.", result[6]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized08()
+        //{
+        //    int n = 8;
+        //    CreateTextSynchronizer(n);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:30.07  This time the bulls left me in peace.", result[n - 1]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized09()
+        //{
+        //    int n = 9;
+        //    CreateTextSynchronizer(n);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:34.00 He lies still in the darkness and listens.", result[n - 1]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized10()
+        //{
+        //    int n = 10;
+        //    CreateTextSynchronizer(10);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:37.26  His wife’s breathing at his side is so faint that he can hardly hear it.", result[n - 1]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized11()
+        //{
+        //    CreateTextSynchronizer(11);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:42.07 One of these mornings she’ll be lying dead beside me and I won’t even notice, he thinks.", result[10]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized12()
+        //{
+        //    int n = 12;
+        //    CreateTextSynchronizer(n);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:47.59  Or maybe it’ll be me. One of us will die before the other. ", result[n - 1]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized13()
+        //{
+        //    int n = 13;
+        //    CreateTextSynchronizer(n);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:49.70  Daybreak will reveal that one of us has been left all alone.", result[n - 1]);
+        //}
+
+        //[TestMethod()]
+        //public void TextSynchronized20()
+        //{
+        //    CreateTextSynchronizer(20);
+        //    var result = MatchLines();
+        //    Assert.AreEqual("00:00:21.07 At least I didn’t dream about the bulls, he thinks.", result[19]);
+        //}
+
+        private List<string> MatchLines()
+        {
+            return textSynchronizer.Process();
+        }
+
+        public string[] GetBook()
+        {
+            return File.ReadAllLines("ch1bookOriginal.txt");
+        }
+
+        public string[] GetSpeechResult()
+        {
+            return File.ReadAllLines("ch1speechresult.txt");
+        }
+
+        private void CreateTextSynchronizer(int i)
+        {
+            textSynchronizer = new TextSynchronizer(GetSpeechResult().Take(i + 1).ToList(), GetBook().Take(i + 1).ToList());
+        }
+        private void CreateSimilarityTool(int i)
+        {
+            similarityTool = new SimilarityTool(GetSpeechResult().Take(i + 1).ToList(), GetBook().Take(i + 1).ToList());
+        }
+    }
+}

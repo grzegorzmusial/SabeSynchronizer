@@ -1,0 +1,274 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Greg.Matcher;
+
+namespace MatcherUnitTestProject
+{
+    [TestClass]
+    public class MatcherUnitTests
+    {
+        //2nd line match
+        //2 sentences of book are in 1 spicz
+        //2nd sentence is redundant
+        [TestMethod]
+        public void TestCase1_1stLineMatch()
+        {
+            var matcher = new Matcher("ch1speechresult.txt", "ch1bookOriginal.txt");
+            matcher.Match();
+            Assert.AreEqual("00:00:00.56 Chapter One.", matcher.Results[0]);
+            Assert.AreEqual("00:00:03.20 He has forgotten something, he knows that for sure when he wakes up.", matcher.Results[1]);
+            Assert.AreEqual("00:00:08.12  Something he dreamed during the night. Something he ought to remember.", matcher.Results[2]);
+            Assert.AreEqual("00:00:12.88 He tries to remember.", matcher.Results[3]);
+            Assert.AreEqual("00:00:14.69  But sleep is like a black hole. A well that reveals nothing of its contents.", matcher.Results[4]);
+            Assert.AreEqual("00:00:21.07 At least I didn’t dream about the bulls, he thinks.", matcher.Results[5]);
+            Assert.AreEqual("00:00:24.63  Then I would have been all sweaty, as if I had suffered through a fever during the night.", matcher.Results[6]);
+            Assert.AreEqual("00:00:30.07  This time the bulls left me in peace.", matcher.Results[7]);
+            Assert.AreEqual("00:00:34.00 He lies still in the darkness and listens.", matcher.Results[8]);
+            Assert.AreEqual("00:00:37.26  His wife’s breathing at his side is so faint that he can hardly hear it.", matcher.Results[9]);
+            Assert.AreEqual("00:00:42.07 One of these mornings she’ll be lying dead beside me and I won’t even notice, he thinks.", matcher.Results[10]);
+            Assert.AreEqual("00:00:47.59  Or maybe it’ll be me. One of us will die before the other.", matcher.Results[11]);
+            Assert.AreEqual("00:00:49.70  Daybreak will reveal that one of us has been left all alone.", matcher.Results[12]);
+            //Console.WriteLine(matcher.Results[18]);
+            Assert.AreEqual("00:00:54.80 He looks at the clock on the table next to the bed.", matcher.Results[13]);
+            Assert.AreEqual("00:00:57.64  The hands glow and point at quarter to five.", matcher.Results[14]);
+            Assert.AreEqual("00:01:02.20 Why did I wake up? he thinks.", matcher.Results[15]);
+            Assert.AreEqual("00:01:05.50  I usually sleep till five thirty.", matcher.Results[16]);
+            Assert.AreEqual("00:01:08.36  I’ve done that for over forty years.", matcher.Results[17]);
+            Assert.AreEqual("00:01:11.25  Why am I waking up now?.", matcher.Results[18]);
+            Assert.AreEqual("00:01:13.76 He listens to the darkness and suddenly he is wide awake.", matcher.Results[19]);
+            Assert.AreEqual("00:03:06.40 “What are you doing?” mutters his wife.“Go back to sleep,” he replies.", matcher.Results[43]);
+            Assert.AreEqual("00:03:10.63  “I’m just stretching my legs.", matcher.Results[44]);
+            Assert.AreEqual("00:03:13.16 “Is your knee hurting again?”.“No.", matcher.Results[45]);
+            Assert.AreEqual("00:03:16.64 “Then come back to bed. Don’t stand there freezing, you’ll catch cold.", matcher.Results[46]);
+            Assert.AreEqual("00:11:12.43 It is the eighth of January, 1990."//Not yet dawn.
+                , matcher.Results[149]);
+        }
+
+        [TestMethod]
+        public void Test2ndChapter()
+        {
+            var matcher = new Matcher("ch2speechresult.txt", "ch2bookOriginal.txt");
+            matcher.Match();
+            Assert.AreEqual("00:11:20.57 Chapter Two.", matcher.Results[0]);
+            /*
+            Test Name:	Test2ndChapter
+Test Outcome:	Failed
+Result Message:	Assert.AreEqual failed. Expected:<00:00:00.56 Chapter Two.>. Actual:<00:11:20.57 Chapter Two.The incoming telephone call was recorded by the Ystad police at 5:13 AM.>.
+Result StandardOutput:	
+00:11:20.57 Chapter Two.The incoming telephone call was recorded by the Ystad police at 5:13 AM. 1
+00:11:22.65  It was taken by an exhausted officer who had been on duty almost without a break since New Year�s Eve. 2
+00:11:32.87  He had listened to the stammering voice on the phone and thought that it was just some deranged senior citizen. 3
+00:11:39.01  But something had sparked his attention nevertheless. 4
+00:11:52.14  He started asking questions. When the conversation was over, he hesitated for just a moment before lifting the receiver again and dialing a number he knew by heart.Kurt Wallander was asleep. He had stayed up far too long the night before, listening to recordings of Maria Callas that a good friend had sent him from Bulgaria. 5
+00:12:01.36  Again and again he had returned to her Traviata, and it was close to two AM before he finally went to bed. 6
+00:12:12.59  By the time the ring of the telephone roused him from sleep, he was deep in an intense erotic dream. 7
+00:12:15.97  As if to assure himself that he had only been dreaming, he reached out and felt the covers next to him. 8
+00:12:23.69  But he was alone in the bed. Neither his wife, who had left him three months earlier, nor the black woman with whom he had just been making fierce love in his dream, was present. 9
+00:12:29.17 He looked at the clock as he reached for the phone. 10
+00:12:31.95  A car crash, he thought instantly. 11
+00:12:34.45  Treacherous ice and someone driving too fast and then spinning off E14. 12
+00:12:39.40  Or trouble with refugees arriving on the morning ferry from Poland. 13
+00:12:43.73 He scooted up in bed and pressed the receiver to his cheek, feeling the sting of his unshaven skin.�Wallander. 14
+00:12:49.26 �I hope I didn�t wake you.�No, damn it. 15
+00:12:54.79  I�m awake. 16
+00:13:04.53 Why do I lie? he thought. 17
+00:13:12.93  Why don�t I just say it like it is? That all I want is to go back to sleep and recapture a fleeting dream in the form of a naked woman. 18
+00:13:19.13 �I thought I should call you. 19
+00:13:22.90 �Traffic accident?�.�No, not exactly. An old farmer called and said his name was Nystr�m. 20
+00:13:31.58  Lives in Lenarp. 21
+00:13:34.03  He claimed that the woman next door was tied up on the floor and that someone was dead. 22
+00:13:39.54 Wallander thought quickly about where Lenarp was located. Not so far from Marsvinsholm, in a region that was unusually hilly for Sk�ne. 23
+00:13:47.34 �It sounded serious. I thought it best to call you at home. 24
+00:13:55.23 �Who have you got at the station right now?�.�Peters and Nor�n are out looking for someone who broke a window at the Continental. 25
+00:14:09.14  Shall I call them?�. 26
+00:14:24.85 �Tell them to drive out to the crossroads between Kade Lake and Katsl�sa and wait there till I show up. 27
+00:14:34.91  Give them the address. 28
+00:14:45.02  When did the call come in?�.�A few minutes ago. 29
+00:15:20.52 �Sure it wasn�t just some drunk calling?�. 30
+00:15:24.99 �Didn�t sound like it.�Huh. 31
+00:15:29.40  All right then.Wallander dressed quickly without showering, poured himself a cup of the lukewarm coffee that was still in the thermos, and looked out the window. 32
+00:15:40.75  He lived on Mariagatan in central Ystad, and the fa�ade of the building across from him was cracked and gray. 33
+00:15:46.38  He wondered fleetingly whether there would be any snow in Sk�ne this winter. 34
+00:15:50.88  He hoped not. 35
+00:15:52.94  Scanian snowstorms always brought periods of uninterrupted drudgery. Car wrecks, snowbound women going into labor, isolated old people, and downed power lines. 36
+00:15:58.48  With the snowstorms came chaos, and he felt ill equipped to meet the chaos this winter. 37
+00:16:14.10  The anxiety of his wife leaving him still burned inside him. 38
+00:16:18.56 He drove down Regementsgatan until he came out on Osterleden. 39
+00:16:22.97  At Dragongatan he was stopped by a red light, and he turned on the car radio to listen to the news. 40
+00:16:29.14  An excited voice was talking about a plane that had crashed on some far-off continent.A time to live and a time to die, he thought as he rubbed the sleep from his eyes. 41
+00:16:44.53  He had adopted this incantation many years ago. 42
+00:16:46.88  Back then he was a young policeman cruising the streets in his home town of Malm�. 43
+00:16:54.83  A drunk had suddenly pulled out a big butcher knife as he and his partner were trying to take him away in the squad car from Pildamm Park. 44
+00:17:01.65  Wallander was stabbed deep, right next to his heart. A few millimeters were all that saved him from an unexpected death. 45
+00:17:06.22  He had been twenty-three then, suddenly profoundly aware of what it meant to be a cop. 46
+00:17:09.44  The incantation was his way of fending off the memories. 47
+00:17:14.29 He drove out of the city, passing the newly built furniture warehouse at the edge of town, and caught a glimpse of the sea in the distance. 48
+00:17:18.44  It was gray but oddly quiet for the middle of the Scanian winter. Far off toward the horizon there was the silhouette of a ship heading east. 49
+00:17:27.54 The snowstorms are on their way, he thought. 50
+00:17:30.42 Sooner or later they�ll be upon us. 51
+00:17:34.08 He shut off the car radio and tried to concentrate on what was in store for him. 52
+00:17:44.63 What did he know, really?. 53
+00:17:52.91 An old woman, tied up on the floor? A man who claimed he saw her through a window? Wallander sped up after he passed the turnoff to Bj�re Lake and thought that it was undoubtedly an old man who was struck by a sudden flare-up of senility. 54
+00:17:56.85  In his many years on the force he had seen more than once how old, isolated people would call the police as a desperate cry for help. 55
+00:18:02.46 The squad car was waiting for him at the side road toward Kade Lake. 56
+00:18:10.00  Peters had climbed out and was watching a hare bounding back and forth out in a field. 57
+00:18:15.80 When he saw Wallander approaching in his blue Peugeot, he raised his hand in greeting and got in behind the wheel. 58
+00:18:18.81 The frozen gravel crunched under the car tires. 59
+00:18:26.91  Kurt Wallander followed the police car. 60
+00:18:30.99  They passed the turnoff toward Trunnerup and continued up some steep hills until they came to Lenarp. 61
+00:18:37.22  They swung onto a narrow dirt road that was hardly more than a tractor rut. 62
+00:18:41.25  After a kilometer they were there. Two farms next to each other, two whitewashed farmhouses, and carefully tended gardens. 63
+00:18:46.24 An elderly man came hurrying toward them. 64
+00:18:52.28  Wallander saw that he was limping, as if one knee was bothering him. 65
+00:19:04.70 When Wallander got out of the car he noticed that the wind had started to blow. 66
+00:19:09.61  Maybe the snow was on the way after all.As soon as he saw the old man he knew that something truly unpleasant awaited him. 67
+00:19:15.59  In the man�s eyes shone a horror that could not be imaginary.�I broke open the door,� he repeated feverishly, over and over. 68
+00:19:22.33  �I broke open the door because I had to see. 69
+00:19:25.40  But she�ll be dead soon too. 70
+00:19:28.12 They went in through the broken door. 71
+00:19:30.89  Wallander was met by a pungent old-man smell. 72
+00:19:34.50  The wallpaper was old-fashioned, and he was forced to squint to be able to see anything in the dim light. 73
+00:19:37.33 �So what happened here?� he asked. 74
+00:19:40.73 �In there,� replied the old man. 75
+00:19:44.56 Then he started to cry.The three policemen looked at each other. 76
+00:19:47.86 Wallander pushed open the door with one foot.It was worse than he had imagined. 77
+00:19:53.74  Much worse. Later he would say that it was the worst he had ever seen. 78
+00:20:07.83  And he had seen plenty. 79
+00:20:09.80 The old couple�s bedroom was soaked in blood. 80
+00:20:14.80  It had even splashed onto the porcelain lamp hanging from the ceiling. 81
+00:20:18.46  Prostrate across the bed lay an old man with no shirt on and his long underwear pulled down. 82
+00:20:24.67  His face was crushed beyond recognition. 83
+00:20:26.88  It looked as though someone had tried to cut off his nose. His hands were tied behind his back and his left thigh was shattered. 84
+00:20:34.00  The white bone shone against all that red. 85
+00:20:36.44 �Oh shit,� he heard Nor�n moan behind him, and Wallander felt nauseated himself. 86
+00:20:43.10 �Ambulance,� he said, swallowing. �Hurry up. 87
+00:20:46.84 Then they bent over the woman, half-lying on the floor, tied to a chair. 88
+00:20:52.91  Whoever tied her up had rigged a noose around her scrawny neck. She was breathing feebly, and Wallander yelled at Peters to find a knife. 89
+00:20:59.59  They cut off the thin rope that was digging deep into her wrists and neck, and laid her gently on the floor. 90
+00:21:05.43  Wallander held her head on his knee. 91
+00:21:10.50 He looked at Peters and realized that they were both thinking the same thing. 92
+00:21:17.25  Who could have been cruel enough to do this? Tying a noose on a helpless old woman.�Wait outside,� said Wallander to the sobbing old man standing in the doorway. 93
+00:21:27.49  �Wait outside and don�t touch anything. 94
+00:21:36.84 He could hear that his voice sounded like a roar. 95
+00:21:39.61 I�m yelling because I�m scared, he thought. 96
+00:21:43.81  What kind of world are we living in?. 97
+00:21:47.72 Almost twenty minutes passed before the ambulance arrived. The woman�s breathing grew more and more irregular, and Wallander was starting to worry that it might come too late. 98
+00:21:56.37 He recognized the ambulance driver, who was named Antonson.His assistant was a young man he had never seen before. 99
+00:22:02.30 �Hi,� said Wallander. 100
+00:22:08.13  �He�s dead. But the woman here is alive. 101
+00:22:12.72  Try to keep her that way. 102
+00:22:16.43 �What happened?� asked Antonson.�I hope she�ll be able to tell us, if she makes it. 103
+00:22:21.83  Hurry up now!�. 104
+00:22:35.71 When the ambulance had vanished down the gravel road, Wallander and Peters went outside. 105
+00:22:40.98  Nor�n was wiping his face with a handkerchief. 106
+00:22:54.05  The dawn was slowly approaching. 107
+00:22:59.20  Wallander looked at his wristwatch. 108
+00:23:02.98  Seven twenty-eight.�It�s a slaughterhouse in there,� said Peters. 109
+00:23:07.83 �Worse,� replied Wallander. 110
+00:23:20.23  �Call in and request a full team. Tell Nor�n to seal off the area. 111
+00:23:26.51  I�m going to talk to the old man. 112
+00:23:30.17 Just as he said that, he heard something that sounded like a scream. 113
+00:23:31.63  He jumped, and then the scream came again. 114
+00:23:35.31 It was a horse whinnying. 115
+00:23:37.89 They went over to the stable and opened the door. 116
+00:23:39.43  Inside in the dark a horse was rustling in its stall. 117
+00:23:55.35  The place smelled of warm manure and urine. 118
+00:23:57.66 �Give the horse some water and hay,� said Wallander. 119
+00:23:59.76  �Maybe there are other animals here too.When he emerged from the stable he gave a shudder. 120
+00:24:03.95  Black birds were screeching in a lone tree far out in a field. 121
+00:24:07.46  He sucked the cold air into his throat and noticed that the wind was picking up. 122
+00:24:10.56 �Your name is Nystr�m,� he said to the man, who by now had stopped weeping. �You have to tell me what happened here. 123
+00:24:22.65  If I understand correctly, you live in the house next door. 124
+00:24:25.87 The man nodded. 125
+00:24:27.17  �What happened here?� he asked in a quavering voice. 126
+00:24:32.32 �That�s what I�m hoping you can tell me,� said Wallander. 127
+00:24:37.60  �Maybe we could go into your house. 128
+00:24:46.48 In the kitchen a woman in an old-fashioned dressing gown sat slumped on a chair crying. 129
+00:24:49.46  But as soon as Wallander introduced himself she got up and started to make coffee. 130
+00:24:54.20  The men sat down at the kitchen table. 131
+00:24:57.90  Wallander saw the Christmas decorations still hanging in the window. 132
+00:25:17.26  An old cat lay on the windowsill, staring at him without blinking. 133
+00:25:24.49  He reached out his hand to pet it. 134
+00:25:27.49 �He bites,� said Nystr�m. �He�s not much used to people. 135
+00:25:36.22  Except for Hanna and me. 136
+00:25:37.89 Kurt Wallander thought of his wife who had left him and wondered where to begin. 137
+00:25:39.45  A bestial murder, he thought. And if we�re really unlucky, it�ll soon be a double murder. 138
+00:25:46.38 Suddenly he had an idea. 139
+00:25:49.42  He knocked on the kitchen window to get Nor�n�s attention.�Excuse me for a moment,� he said, getting up. 140
+00:25:56.98 �The horse had both water and hay,� said Nor�n. 141
+00:26:01.52  �There weren�t any other animals. 142
+00:26:12.35 �See that someone goes over to the hospital,� said Wallander. 143
+00:26:16.70  �In case she wakes up and says something. She must have seen everything. 144
+00:26:21.73 Nor�n nodded.�Send somebody with good ears,� said Wallander. 145
+00:26:50.84  �Preferably someone who can read lips. 146
+00:26:52.71 When he came back into the kitchen he took off his overcoat and laid it on the kitchen sofa. 147
+00:26:58.99 �Now tell me,� he said. �Tell me, and don�t leave anything out. Take your time. 148
+00:27:06.95 After two cups of weak coffee he could see that neither Nystr�m nor his wife had anything significant to tell. 149
+00:27:11.59  He got some of the chronology and the life story of the couple who had been attacked. 150
+00:27:21.88 He had two questions left.�Do you know if they kept any large sums of money in the house?� he asked. 151
+00:28:13.70 �No,� said Nystr�m. 152
+00:28:20.00  �They put everything in the bank. 153
+00:28:23.37  Their pensions too. And they weren�t rich. 154
+00:28:26.13  When they sold off the fields and the animals and the machinery, they gave the money to their children. 155
+00:28:30.56 The second question seemed meaningless to him. But he asked it anyway. 156
+00:28:36.42  In this situation he had no choice.�Do you know if they had any enemies?� he asked. 157
+00:28:41.27 �Enemies?�. 158
+00:28:43.39 �Anybody who could have possibly done this?�. 159
+00:28:45.12 They didn�t seem to understand his question. 160
+00:28:47.22 He repeated it.The two old people looked at each other, uncomprehending. 161
+00:28:50.77 �People like us don�t have any enemies,� the man replied. 162
+00:28:53.44  Wallander noticed that he sounded offended. �Sometimes we quarrel with each other. 163
+00:28:57.82  About maintaining a wagon path or the location of the pasture boundaries. 164
+00:29:02.90  But we don�t kill each other.Wallander nodded. 165
+00:29:29.54 �I�ll be in touch again soon,� he said, getting up with his coat in his hand. 166
+00:29:31.91  �If you think of anything else, don�t hesitate to call the police. 167
+00:29:34.75  Ask for me, Inspector Wallander.�What if they come back. 168
+00:29:37.57 ?� asked the old woman.Wallander shook his head. 169
+00:29:42.09 �They won�t be back,� he said. 170
+00:29:45.23  �It was most likely robbers. 171
+00:29:48.16  They never come back. 172
+00:29:56.12  There�s nothing for you to worry about.He thought that he ought to say something more to reassure them. 173
+00:30:10.31  But what? What security could he offer to people who had just seen their closest neighbor brutally murdered? Who had to wait and see whether a second person was going to die?. 174
+00:30:13.37 �The horse,� he said. 175
+00:30:16.40  �Who will give it hay?�.�We will,� replied the old man. 176
+00:30:29.13  �We�ll see that she gets what she needs. 177
+00:30:31.40 Wallander went outside into the cold dawn. 178
+00:30:36.77  The wind had increased, and he hunched his shoulders as he walked toward his car. 179
+00:30:42.49  Actually he ought to stay here and give the crime-scene technicians a hand. 180
+00:30:51.06  But he was freezing and feeling lousy and didn�t want to stay any longer than necessary. 181
+00:30:53.37  Besides, he saw through the window that it was Rydberg who had come with the team�s car. 182
+00:30:59.57  That meant that the techs wouldn�t finish their work until they had turned over and inspected every lump of clay at the crime scene. 183
+00:31:02.37  Rydberg, who was supposed to retire in a couple of years, was a passionate policeman. 184
+00:31:07.47  Although he might appear pedantic and slow, his presence was a guarantee that a crime scene would be treated the way it should be. 185
+00:31:16.01 Rydberg had rheumatism and used a cane. Now he came limping across the yard toward Wallander. 186
+00:31:20.35 �It�s not pretty,� Rydberg said. 187
+00:31:22.31  �It looks like a slaughterhouse in there. 188
+00:31:25.74 �You�re not the first one to say that,� said Wallander. 189
+00:31:28.69 Rydberg looked serious. �Have we got any leads?�. 190
+00:31:32.28 Wallander shook his head. 191
+00:31:45.74 �Nothing at all?� There was something of an entreaty in Rydberg�s voice. 192
+00:31:51.43 �The neighbors didn�t hear or see anything. 193
+00:32:02.78  I think it�s ordinary robbers.�You call this insane brutality ordinary?�. 194
+00:32:07.47 Rydberg was upset, and Wallander regretted his choice of words. 195
+00:32:09.94  �I meant, of course, that it was some particularly fiendish individuals who were at it last night. 196
+00:32:14.31  The type who make their living picking out farms in solitary locations where lonely old people live. 197
+00:32:17.04 �We�ve got to catch these guys,� said Rydberg. 198
+00:32:23.86  �Before they strike again.�You�re right,� said Wallander. 199
+00:32:26.69  �If we don�t catch anyone else this year, we�ve got to catch these guys. 200
+00:32:29.80 He got into his car and drove off. 201
+00:32:37.78  On the narrow farm road he almost collided with a car coming around a curve toward him at high speed. 202
+00:32:42.93  He recognized the man driving. 203
+00:32:50.23  It was a reporter who worked for one of the big national papers and always showed up whenever something of more than local interest happened in the Ystad area. 204
+00:33:03.58 Wallander drove back and forth through Lenarp a few times. 205
+00:33:09.28  There were lights in the windows, but no one was outside.What are they going to think when they find out? he wondered to himself. 206
+00:33:12.12 He was feeling uneasy. 207
+00:33:14.35  The discovery of the old woman with the noose around her neck had shaken him. 208
+00:33:17.56  The cruelty of it was incomprehensible. Who would do something like that? Why not hit her over the head with an axe so it would all be over in an instant? Why torture her?. 209
+00:33:42.82 He tried to plan the investigation in his head as he drove slowly through the little town. 210
+00:33:46.07  At the crossroads toward Blentarp he stopped, turned up the heat in the car because he was cold, and then sat completely still, gazing off toward the horizon. 211
+
+
+             */
+        }
+    }
+}

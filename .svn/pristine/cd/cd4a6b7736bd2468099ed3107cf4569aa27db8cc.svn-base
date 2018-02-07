@@ -1,0 +1,90 @@
+﻿using spiczrekasynk;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Synchro
+{
+    public class TextSynchronizer
+    {
+        List<string> speech;
+        List<string> newlines;
+        List<string> result;
+
+        public TextSynchronizer(List<string> speech, List<string> allLines)
+        {
+            this.speech = speech;
+            List<string> bookLines = new List<string>();
+            newlines = new List<string>();
+            allLines.ForEach
+                (
+                    (line) => bookLines.AddRange
+                        (
+                            line.Split('.').ToList()
+                        )
+                );
+            bookLines.ForEach
+                (
+                    (line) => AddDot(line, newlines)
+                );
+
+            result = new List<string>();
+        }
+
+        private static void AddDot(string line, List<string> newlines)
+        {
+            if (line == string.Empty)
+            {
+                return;
+            }
+
+            newlines.Add(line + '.');
+        }
+
+        public List<string> Process()
+        {
+            while (speech.Any() && newlines.Any())
+            {
+                Match();
+            }
+
+            return result;
+        }
+
+        private void Match()
+        {
+            string time;
+
+            for (int i = 1; i < 4; i++)
+            {
+                if (speech.Count > i )
+                if (speech[i].IsSimilarTo(newlines[i]))
+                {
+                    var speechline = SeparateTime(speech[0], out time);
+                    string bookline = string.Empty;
+
+                    for (int j = 0; j < i; j++)
+                    {
+                        bookline += newlines[j];
+                        if (newlines.Count > 0)
+                            newlines.RemoveAt(0);
+                    }
+
+                    bookline = time + bookline;
+                    result.Add(bookline);
+
+                    break;
+                }
+                //last line
+            }
+
+            if (speech.Count > 0)
+                speech.RemoveAt(0);
+        }
+
+        public static string SeparateTime(string speechlineWithTime, out string time)
+        {
+            time = speechlineWithTime.Substring(0, 12);
+            return speechlineWithTime.Substring(12, speechlineWithTime.Length - 12);
+        }
+    }
+}
